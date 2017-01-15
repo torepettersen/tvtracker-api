@@ -29,8 +29,12 @@ public class UserRole {
 	public UserRole() {
 
     }
+		
+	public UserRole(User user, Role role) {
+		this.user = user;
+		this.role = role;
+	}
 
-	
 	//Getters and setters
 	public long getId() {
 		return id;

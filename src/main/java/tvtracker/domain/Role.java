@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import tvtracker.enums.RolesEnum;
+
 @Entity
 public class Role {
 
@@ -23,6 +25,11 @@ public class Role {
     // Constructor
     public Role() {
 
+    }
+    
+    public Role(RolesEnum rolesEnum) {
+        this.id = rolesEnum.getId();
+        this.name = rolesEnum.getRoleName();
     }
 
     // Getters and setters
