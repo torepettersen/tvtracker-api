@@ -9,16 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import tvtracker.enums.RolesEnum;
 
 @Entity
-public class Role {
+public class Role  {
 
 	@Id
     private int id;
 
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserRole> userRoles = new HashSet<>();
     

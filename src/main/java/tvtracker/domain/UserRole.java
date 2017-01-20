@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "user_role")
 public class UserRole {
@@ -17,10 +19,12 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;

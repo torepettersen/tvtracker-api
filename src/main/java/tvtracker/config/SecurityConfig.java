@@ -12,12 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import tvtracker.services.UserSecurityService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	//@Autowired
-    //private UserSecurityService userSecurityService;
+	@Autowired
+    private UserSecurityService userSecurityService;
 	
 	/** The encryption SALT. */
     private static final String SALT = "hr54jg84qhdnvvp941";
@@ -51,11 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                //.userDetailsService(userSecurityService)
-                //.passwordEncoder(passwordEncoder());
-    	
-    		.inMemoryAuthentication()
-    		.withUser("user").password("password").roles("USER");
+                .userDetailsService(userSecurityService)
+                .passwordEncoder(passwordEncoder());
     }
     
 }
