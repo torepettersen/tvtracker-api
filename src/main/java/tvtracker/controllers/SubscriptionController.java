@@ -24,6 +24,16 @@ public class SubscriptionController {
 	
 	@Autowired
 	private SubscriptionService subscriptionService;
+	
+	@RequestMapping(value="/subscribed", method = RequestMethod.GET)
+	public Map<String, Object> subscribed(Principal principal) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		
+		User user = userService.findByEmail(principal.getName());
+		res.put("shows", subscriptionService.read(user));
+		
+		return res;
+	}
 
 	@RequestMapping(value="/subscribe", method = RequestMethod.POST)
 	public Map<String, Object> subscribe(

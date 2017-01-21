@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "shows")
@@ -24,7 +24,7 @@ public class Show {
 	
 	private String name;
 	
-	@JsonManagedReference
+	@JsonIgnore
     @OneToMany(mappedBy = "show", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Subscription> subscriptions = new HashSet<>();
 	
