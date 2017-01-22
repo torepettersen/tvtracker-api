@@ -38,16 +38,13 @@ public class SubscriptionController {
 	@RequestMapping(value="/subscribe", method = RequestMethod.POST)
 	public Map<String, Object> subscribe(
 			Principal principal,
-			@RequestParam(value="tvmazeId", required=true) int tvmazeId,
-			@RequestParam(value="showName", required=true) String showName
+			@RequestParam(value="tvmazeId", required=true) int tvmazeId
 	) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		
 		User user = userService.findByEmail(principal.getName());
-		subscriptionService.create(tvmazeId, showName, user);
+		subscriptionService.create(tvmazeId, user);
 		
-		
-		System.out.println(user);
 		res.put("user", user);
 		
 		return res;

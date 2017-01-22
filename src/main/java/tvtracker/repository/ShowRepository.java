@@ -8,5 +8,7 @@ import tvtracker.domain.Show;
 @Repository
 public interface ShowRepository extends CrudRepository<Show, Integer> {
 	
+	Show findById(int id);
+	
 	Show findByTvmazeId(int id);
 }
