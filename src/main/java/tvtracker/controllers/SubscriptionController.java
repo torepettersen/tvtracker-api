@@ -45,7 +45,22 @@ public class SubscriptionController {
 		User user = userService.findByEmail(principal.getName());
 		subscriptionService.create(tvmazeId, user);
 		
-		res.put("user", user);
+		res.put("shows", subscriptionService.read(user));
+		
+		return res;
+	}
+	
+	@RequestMapping(value="/unsubscribe", method = RequestMethod.POST)
+	public Map<String, Object> unsubscribe(
+			Principal principal,
+			@RequestParam(value="id", required=true) int id
+	) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		
+		User user = userService.findByEmail(principal.getName());
+		subscriptionService.delete(id, user);
+		
+		res.put("shows", subscriptionService.read(user));
 		
 		return res;
 	}

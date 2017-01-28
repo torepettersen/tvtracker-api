@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Subscription {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

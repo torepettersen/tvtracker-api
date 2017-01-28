@@ -52,8 +52,6 @@ public class SubscriptionService {
 			showRepository.save(show);
 		}
 		
-		
-		//Set<Subscription> subscriptions = new HashSet<>();
 		subscriptions.add(new Subscription(user, show));
 		user.setSubscriptions(subscriptions);
 		
@@ -68,5 +66,14 @@ public class SubscriptionService {
 		}
 		
 		return shows;
+	}
+	
+	public void delete(int id, User user) {
+		Set<Subscription> subscriptions = user.getSubscriptions();
+		
+		subscriptions.removeIf(s -> s.getShow().getId() == id);
+		
+		
+		user.setSubscriptions(subscriptions);
 	}
 }

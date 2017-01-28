@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private Set<UserRole> userRoles = new HashSet<>();
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	private Set<Subscription> subscriptions = new HashSet<>();
 	
 	// Constructor
