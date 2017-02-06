@@ -54,5 +54,20 @@ public class SignupController {
 		
 		return res;
 	}
+	
+	@RequestMapping(value="/checkemail", method = RequestMethod.POST)
+	public Map<String, Object> checkeEmail(
+		@RequestParam(value="email", required=true) String email
+	) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		
+		if (userService.findByEmail(email) != null) {
+			res.put("error", "Email already exists");
+        } else {
+        	res.put("message", "Email is unique");
+        }
+		
+		return res;
+	}
 
 }

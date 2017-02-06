@@ -44,7 +44,7 @@ public class LoginController {
 			}
 		}
 		
-		res.put("error", "Failed to login");
+		res.put("error", "Wrong username or email");
 		res.put("status", HttpStatus.FORBIDDEN.value());
 		
 		return res;
