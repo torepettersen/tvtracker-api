@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserSecurityService userSecurityService;
 	
 	/** The encryption SALT. */
-    private static final String SALT = "hr54jg84qhdnvvp941";
+    private static final String SALT = System.getenv("SALT");
     
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
