@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ public class SubscriptionController {
 	@Autowired
 	private SubscriptionService subscriptionService;
 	
-	@RequestMapping(value="/subscribed", method = RequestMethod.GET)
+	@RequestMapping(value="/subscriptions", method = RequestMethod.GET)
 	public Map<String, Object> subscribed(Principal principal) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		
@@ -35,7 +36,7 @@ public class SubscriptionController {
 		return res;
 	}
 
-	@RequestMapping(value="/subscribe", method = RequestMethod.POST)
+	@RequestMapping(value="/subscriptions", method = RequestMethod.POST)
 	public Map<String, Object> subscribe(
 			Principal principal,
 			@RequestParam(value="tvmazeId", required=true) int tvmazeId
@@ -50,10 +51,10 @@ public class SubscriptionController {
 		return res;
 	}
 	
-	@RequestMapping(value="/unsubscribe", method = RequestMethod.POST)
+	@RequestMapping(value="/subscriptions/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> unsubscribe(
 			Principal principal,
-			@RequestParam(value="id", required=true) int id
+			@PathVariable int id
 	) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		
